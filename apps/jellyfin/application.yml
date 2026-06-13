@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ZLaronM/argocd_apps.git
+    targetRevision: 2.1.1 # Check Artifact Hub for the latest version
+    chart: jellyfin
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://default.svc
+    namespace: jellyfin
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
