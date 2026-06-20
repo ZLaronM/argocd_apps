@@ -55,6 +55,6 @@ securityContext:
 nodeSelector:
   kubernetes.io/hostname: k3  # run: kubectl get nodes
 
-service:
-  dns:
-    type: ClusterIP  # LoadBalancer no longer needed if using hostNetwork
+# service:
+#   dns:
+#     type: ClusterIP  # LoadBalancer no longer needed if using hostNetwork
