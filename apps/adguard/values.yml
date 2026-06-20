@@ -26,15 +26,34 @@ ingress:
         - path: /
           pathType: Prefix
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: 80
-readinessProbe:
-  httpGet:
-    path: /
-    port: 80
-startupProbe:
-  httpGet:
-    path: /
-    port: 80
+#  I DONT THINK I NEED THIS
+# livenessProbe:
+#   httpGet:
+#     path: /
+#     port: 80
+# readinessProbe:
+#   httpGet:
+#     path: /
+#     port: 80
+# startupProbe:
+#   httpGet:
+#     path: /
+#     port: 80
+
+#  THIS SHOULD ALLOW ME TO ACTUALLY USE IT ON MY LOCAL NETWORK
+
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+
+podSecurityContext: {}
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+
+nodeSelector:
+  kubernetes.io/hostname: <your-debian-node-name>  # run: kubectl get nodes
+
+service:
+  type: ClusterIP  # LoadBalancer no longer needed if using hostNetwork
