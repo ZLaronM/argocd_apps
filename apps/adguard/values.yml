@@ -1,0 +1,25 @@
+# values.yaml — AdGuard Home in wizard mode (default)
+# Web UI starts on port 3000 for first-time setup
+# After wizard completion, UI moves to port 80
+
+service:
+  dns:
+    type: LoadBalancer
+    loadBalancerIP: '192.168.1.53' # static IP for DNS (optional, MetalLB/cloud LB)
+
+persistence:
+  conf:
+    enabled: true
+    size: 256Mi
+  work:
+    enabled: true
+    size: 5Gi # query log + filter lists + statistics
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hosts:
+    - host: adguard.mitchell.com
+      paths:
+        - path: /
+          pathType: Prefix
