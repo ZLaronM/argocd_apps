@@ -53,7 +53,7 @@ securityContext:
       - NET_ADMIN
 
 nodeSelector:
-  kubernetes.io/hostname: <your-debian-node-name>  # run: kubectl get nodes
+  kubernetes.io/hostname: k3  # run: kubectl get nodes
 
 service:
   dns:
