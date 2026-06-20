@@ -56,4 +56,5 @@ nodeSelector:
   kubernetes.io/hostname: <your-debian-node-name>  # run: kubectl get nodes
 
 service:
-  type: ClusterIP  # LoadBalancer no longer needed if using hostNetwork
+  dns:
+    type: ClusterIP  # LoadBalancer no longer needed if using hostNetwork
