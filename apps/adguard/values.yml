@@ -25,3 +25,16 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+startupProbe:
+  httpGet:
+    path: /
+    port: 80
